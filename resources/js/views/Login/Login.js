@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { Link } from "react-router-dom";
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { Link } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -56,7 +55,7 @@ class Login extends Component {
                         <LockOutlinedIcon />
                     </Avatar>
 
-                    <h5>Sign In</h5>
+                    <h5>Login</h5>
 
                     <form className="mt-1" onSubmit={this.handleSubmit}>
                         <TextField
@@ -92,12 +91,12 @@ class Login extends Component {
                         </Button>
 
                         <Grid container>
-                            <Grid item xs>
+                            <Grid item xs={12} sm={4}>
                                 <Link to="#">
                                     Forgot password?
                                 </Link>
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={12} sm={8} sx={{ textAlign: 'right' }}>
                                 <Link to="/register">
                                     Don't have an account? Sign Up
                                 </Link>
