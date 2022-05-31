@@ -26182,25 +26182,19 @@ var Login = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(Login, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      console.log('Login Mounted!');
-    }
-  }, {
     key: "handleEmail",
     value: function handleEmail(event) {
-      event.persist();
       this.setState(function (state) {
         return {
           email: event.target.value
         };
       });
-      console.log(this.state.email);
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
-      alert(this.email);
+      event.preventDefault();
+      alert('Welcome! ' + this.state.email);
     }
   }, {
     key: "render",
@@ -26235,7 +26229,8 @@ var Login = /*#__PURE__*/function (_Component) {
               name: "email",
               autoComplete: "email",
               autoFocus: true,
-              onKeyDown: this.handleEmail
+              value: this.state.email,
+              onChange: this.handleEmail
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_6__["default"], {
               margin: "normal",
               required: true,
@@ -26432,20 +26427,60 @@ var Register = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
     _this.state = {
       firstName: '',
-      lastName: ''
+      lastName: '',
+      email: '',
+      password: ''
     };
     _this.handleFirstName = _this.handleFirstName.bind(_assertThisInitialized(_this));
     _this.handleLastName = _this.handleLastName.bind(_assertThisInitialized(_this));
+    _this.handleEmail = _this.handleEmail.bind(_assertThisInitialized(_this));
+    _this.handlePassword = _this.handlePassword.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Register, [{
     key: "handleFirstName",
-    value: function handleFirstName() {// Write Code Here
+    value: function handleFirstName(event) {
+      this.setState(function (state) {
+        return {
+          firstName: event.target.value
+        };
+      });
     }
   }, {
     key: "handleLastName",
-    value: function handleLastName() {// Write Code Here
+    value: function handleLastName(event) {
+      this.setState(function (state) {
+        return {
+          lastName: event.target.value
+        };
+      });
+    }
+  }, {
+    key: "handleEmail",
+    value: function handleEmail(event) {
+      this.setState(function (state) {
+        return {
+          email: event.target.value
+        };
+      });
+    }
+  }, {
+    key: "handlePassword",
+    value: function handlePassword(event) {
+      this.setState(function (state) {
+        return {
+          password: event.target.value
+        };
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      event.preventDefault(); // alert('Welcome! ' + this.state.email);
+
+      console.log(this.state);
     }
   }, {
     key: "render",
@@ -26468,83 +26503,90 @@ var Register = /*#__PURE__*/function (_Component) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_icons_material_LockOutlined__WEBPACK_IMPORTED_MODULE_5__["default"], {})
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h5", {
             children: "Register"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_3__["default"], {
-            component: "form",
-            sx: {
-              mt: 3
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-              container: true,
-              spacing: 2,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                xs: 12,
-                sm: 6,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                  autoComplete: "given-name",
-                  name: "firstName",
-                  required: true,
-                  fullWidth: true,
-                  id: "firstName",
-                  label: "First Name",
-                  autoFocus: true
-                })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("form", {
+            className: "mt-1",
+            onSubmit: this.handleSubmit,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_3__["default"], {
+              sx: {
+                mt: 3
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                container: true,
+                spacing: 2,
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  item: true,
+                  xs: 12,
+                  sm: 6,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                    autoComplete: "given-name",
+                    name: "firstName",
+                    required: true,
+                    fullWidth: true,
+                    id: "firstName",
+                    label: "First Name",
+                    autoFocus: true,
+                    onChange: this.handleFirstName
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  item: true,
+                  xs: 12,
+                  sm: 6,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                    required: true,
+                    fullWidth: true,
+                    id: "lastName",
+                    label: "Last Name",
+                    name: "lastName",
+                    autoComplete: "family-name",
+                    onChange: this.handleLastName
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  item: true,
+                  xs: 12,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                    required: true,
+                    fullWidth: true,
+                    id: "email",
+                    label: "Email Address",
+                    name: "email",
+                    autoComplete: "email",
+                    onChange: this.handleEmail
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  item: true,
+                  xs: 12,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                    required: true,
+                    fullWidth: true,
+                    name: "password",
+                    label: "Password",
+                    type: "password",
+                    id: "password",
+                    autoComplete: "new-password",
+                    onChange: this.handlePassword
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                type: "submit",
+                fullWidth: true,
+                variant: "contained",
+                sx: {
+                  mt: 3,
+                  mb: 2
+                },
+                children: "Register"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                xs: 12,
-                sm: 6,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                  required: true,
-                  fullWidth: true,
-                  id: "lastName",
-                  label: "Last Name",
-                  name: "lastName",
-                  autoComplete: "family-name"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                xs: 12,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                  required: true,
-                  fullWidth: true,
-                  id: "email",
-                  label: "Email Address",
-                  name: "email",
-                  autoComplete: "email"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                xs: 12,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                  required: true,
-                  fullWidth: true,
-                  name: "password",
-                  label: "Password",
-                  type: "password",
-                  id: "password",
-                  autoComplete: "new-password"
+                container: true,
+                justifyContent: "flex-end",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  item: true,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
+                    to: "/login",
+                    children: "Already have an account? Sign in"
+                  })
                 })
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
-              type: "submit",
-              fullWidth: true,
-              variant: "contained",
-              sx: {
-                mt: 3,
-                mb: 2
-              },
-              children: "Register"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-              container: true,
-              justifyContent: "flex-end",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
-                  to: "/login",
-                  children: "Already have an account? Sign in"
-                })
-              })
-            })]
+            })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           className: "mt-5 text-secondary text-center",

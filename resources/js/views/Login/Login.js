@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Container from '@mui/material/Container';
 
 class Login extends Component {
-    
+
     constructor(props) {
         super(props)
 
@@ -23,21 +23,15 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    componentDidMount() {
-        console.log('Login Mounted!');
-    }
-
     handleEmail(event) {
-        event.persist()
-
         this.setState((state) => ({
             email: event.target.value
-        }))
-        console.log(this.state.email);
+        }));
     }
 
     handleSubmit(event) {
-        alert(this.email);
+        event.preventDefault();
+        alert('Welcome! ' + this.state.email);
     }
 
     render() {
@@ -67,7 +61,8 @@ class Login extends Component {
                             name="email"
                             autoComplete="email"
                             autoFocus
-                            onKeyDown={this.handleEmail}
+                            value={this.state.email}
+                            onChange={this.handleEmail}
                         />
 
                         <TextField
@@ -104,7 +99,7 @@ class Login extends Component {
                         </Grid>
                     </form>
                 </Box>
-                
+
 
                 <div className="mt-5 text-secondary text-center">
                     <span>
